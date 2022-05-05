@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no=referrer">
+    <title>登录-首页</title>
+</head>
+<body>
+<h1>欢迎登录</h1>
+<p>time: {{ current_time }}</p>
+<img src="/static/123.png">
+<ol>
+    <li>python</li>
+    <li>java</li>
+    <li>php</li>
+</ol>
+<ul>
+    <li>python</li>
+    <li>java</li>
+    <li>php</li>
+</ul>
+<a href="https://www.baidu.com">这是一个链接</a>
+<a href="https://www.baidu.com"target="_blank">新窗口打开</a>
+<form action="/login_demo/" method="post" style="text-align: center">
+    {% csrf_token %}
+    <p>
+        用户名：
+        <input type="text" name="username">
+    </p>
+    <p>
+         密码：
+        <input type="password" name="password">
+    </p>
+    <p>
+        <input type="submit" value="登录">
+    </p>
+</form>
+</body>
+</html>

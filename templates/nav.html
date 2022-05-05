@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航分类</title>
+</head>
+<body>
+
+{% for name in nav_list %}
+<h2>{{ name.type }}</h2>
+<!--<p>{{  name.value  }}</p>-->
+<p>
+    {% for i in name.value %}
+        {% if forloop.first %} - {% endif %}
+        {{  i  }}
+        {% if not forloop.last %} | {% endif %}
+    {% empty %}
+        默认值
+    {% endfor %}
+</p>
+第{{ forloop.counter }}次循环，剩余{{ forloop.revcounter}}次
+{% endfor %}
+
+</body>
+</html>

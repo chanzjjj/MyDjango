@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>{{ name }}</h1>
+
+<div>
+  <p>
+    <span>姓名: </span> {{ n_name }}
+  </p>
+  <p>
+    <span>年龄: </span> {{ age }}
+  </p>
+  <p>
+    <span>感兴趣的技术: </span> {{ fancy.0 }}、{{ fancy.1 }}、{{ fancy.2 }}
+  </p>
+</div>
+
+<h2>字典对象取值</h2>
+
+<div>
+  <a href="https://www.cnblogs.com/yoyoketang/tag/">这是一个链接</a>
+  <p>
+    <span>博客地址:</span> {{ blog.url }}
+  </p>
+  <p>
+    <img src="{{ blog.img }}">
+  </p>
+</div>
+
+<h2>对象取值</h2>
+<div>
+  <p>
+    <span>博客名称：</span> {{ myblog.name }}
+  </p>
+  <p>
+    <span>年龄：</span> {{ myblog.age }}
+  </p>
+  <p>
+    <span>关注数：</span> {{ myblog.guanzhu }}
+  </p>
+  <p>
+    <span>粉丝：</span> {{ myblog.fensi }}
+  </p>
+</div>
+</body>
+</html>
