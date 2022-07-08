@@ -2,38 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>修改我的QQ信息</title>
+    <title>查询我的QQ信息</title>
 </head>
 <body>
 
-<p>页面提交数据到数据库</p>
-<form action="" method="post">
-    {% csrf_token %}
+<p>查询我的QQ信息</p>
+<form action="" method="get">
     <p>
         <span>输入你的QQ号：</span>
-        <input type="text" name="qq" required>
+        <input type="text" name="qq">
     </p>
     <p>
         <span>输入你的name：</span>
         <input type="text" name="name">
     </p>
     <p>
-        <span>输入你的age：</span>
-        <input type="text" name="age">
-    </p>
-    <p>
         <input type="submit" value="提交">
     </p>
 </form>
 
-{% if info %}
+{% if not info.code %}
     <div>
         <p>
-            <span>提交结果：</span>{{ info }}
+            <span>提交结果</span>{{info.qq}}
+        </p>
+        <p>
+            <span>年龄：</span>{{info.age}}
         </p>
     </div>
 {% endif %}
-
 
 </body>
 </html>

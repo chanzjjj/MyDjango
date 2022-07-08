@@ -26,5 +26,7 @@ urlpatterns = [
     # path('yoyo/<year>/<month>.html', views.yoyo)
     url(r'yoyo/(?P<year>[0-9]{4})/(?P<month>[0-9]{2}).html', views.yoyo),
     url(r'^personal/$', views.personalView),
-    url(r'^nav/$', views.navView)
+    url(r'^nav/$', views.navView),
+    url(r'^qq/$', views.get_info),
+    url(r'^info/$', views.add_info)
 ]

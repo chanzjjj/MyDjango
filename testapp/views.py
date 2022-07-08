@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 import time
+from testapp.models import PersonInfo
 
 # Create your views here.
 
@@ -96,3 +97,65 @@ def navView(request):
     ]
     context["nav_list"] = name_list
     return render(request, "nav.html", context)
+
+
+def get_info(request):
+    '''查询'''
+    if request.method == 'GET':
+        querystring = request.GET
+        print("获取get请求提交的参数", querystring)
+        qq_value = request.GET.get("qq")
+        name_value = request.GET.get("name")
+        try:
+            info = PersonInfo.objects.get(qq=qq_value)
+            print("返回的object", info)
+        except:
+            info = {"code": 1}
+        context = {
+            "info": info,
+            "code": 0
+        }
+    return render(request, "info.html", context=context)
+
+
+def add_info(request):
+    '''修改数据'''
+    context = {
+        "info": ""
+    }
+    if request.method == "GET":
+        return render(request, "add_info.html")
+    if request.method == "POST":
+        body = request.POST
+        print("获取到post提交的数据：", body)
+        qq_value = request.POST.get("qq", '')
+        name_value = request.POST.get("name", '')
+        age_value = request.POST.get("age", 0)
+        print("获取到的数据：", qq_value,name_value,age_value)
+        info = PersonInfo.objects.filter(qq=qq_value)
+        print("info信息",info)
+        if len(info) >= 1:
+            # 数据已经存在，并修改
+            if name_value:
+                info[0].name = name_value
+            if age_value:
+                info[0].age = age_value
+            info[0].save()
+            context = {
+                "info": "qq号已经存在，修改成功"
+            }
+        else:
+            if not age_value:
+                PersonInfo.objects.create(qq=qq_value,
+                                          name=name_value)
+                context = {
+                    "info": "新增成功"
+                }
+            else:
+                PersonInfo.objects.create(qq=qq_value,
+                                        name=name_value,
+                                        age=int(age_value))
+                context = {
+                    "info": "新增成功"
+                }
+        return render(request, "add_info.html", context=context)
